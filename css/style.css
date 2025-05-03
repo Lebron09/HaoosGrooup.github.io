@@ -207,6 +207,75 @@ h6,
     }
 }
 
+/*** Global Mobile Fixes ***/
+@media (max-width: 767px) {
+    /* 1. Исправление переполнения контента */
+    .container-xxl,
+    .container {
+        max-width: 100%;
+        overflow-x: hidden;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* 2. Фикс для карусели */
+    .carousel-inner {
+        border-radius: 10px;
+    }
+    
+    .carousel-item {
+        height: 250px !important;
+    }
+
+    /* 3. Фикс секции с проектами */
+    .portfolio-item {
+        flex: 1 1 100%;
+        min-width: auto;
+        margin-bottom: 15px;
+    }
+
+    /* 4. Фикс навигации */
+    .navbar-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+    }
+
+    /* 5. Общие правки элементов */
+    .hero-header {
+        padding: 4rem 0 !important;
+        background-size: contain !important;
+    }
+
+    .feature-item,
+    .service-item {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    /* 6. Фикс футера */
+    .footer {
+        background-size: cover !important;
+    }
+
+    /* 7. Скрываем лишние элементы */
+    .d-none-mobile {
+        display: none !important;
+    }
+}
+
+/*** Prevent Horizontal Scroll ***/
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, iframe, video {
+    max-width: 100%;
+    height: auto;
+}
+
 
 /*** Hero Header ***/
 .hero-header {
