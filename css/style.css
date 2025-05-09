@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #6222CC;
+    --primary: #2031ef;
     --secondary: #FBA504;
     --light: #F6F4F9;
     --dark: #04000B;
@@ -207,75 +207,6 @@ h6,
     }
 }
 
-/*** Global Mobile Fixes ***/
-@media (max-width: 767px) {
-    /* 1. Исправление переполнения контента */
-    .container-xxl,
-    .container {
-        max-width: 100%;
-        overflow-x: hidden;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    /* 2. Фикс для карусели */
-    .carousel-inner {
-        border-radius: 10px;
-    }
-    
-    .carousel-item {
-        height: 250px !important;
-    }
-
-    /* 3. Фикс секции с проектами */
-    .portfolio-item {
-        flex: 1 1 100%;
-        min-width: auto;
-        margin-bottom: 15px;
-    }
-
-    /* 4. Фикс навигации */
-    .navbar-nav {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 10px;
-    }
-
-    /* 5. Общие правки элементов */
-    .hero-header {
-        padding: 4rem 0 !important;
-        background-size: contain !important;
-    }
-
-    .feature-item,
-    .service-item {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-
-    /* 6. Фикс футера */
-    .footer {
-        background-size: cover !important;
-    }
-
-    /* 7. Скрываем лишние элементы */
-    .d-none-mobile {
-        display: none !important;
-    }
-}
-
-/*** Prevent Horizontal Scroll ***/
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-img, iframe, video {
-    max-width: 100%;
-    height: auto;
-}
-
 
 /*** Hero Header ***/
 .hero-header {
@@ -472,12 +403,22 @@ img, iframe, video {
 
 
 /*** Project Portfolio ***/
+#portfolio-flters {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+    list-style: none;
+}
+
 #portfolio-flters li {
     display: inline-block;
+    margin: 0 12px;
+    padding: 8px 20px;
     font-weight: 500;
     color: var(--dark);
     cursor: pointer;
-    transition: .5s;
+    transition: all 0.3s;
     border-bottom: 2px solid transparent;
 }
 
@@ -487,33 +428,38 @@ img, iframe, video {
     border-color: var(--primary);
 }
 
-.portfolio-item img {
-    transition: .5s;
+/* Адаптивность */
+@media (max-width: 768px) {
+    #portfolio-flters {
+        white-space: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 15px;
+    }
+    
+    #portfolio-flters li {
+        margin: 0 8px;
+        padding: 6px 15px;
+        font-size: 14px;
+    }
 }
 
-.portfolio-item:hover img {
-    transform: scale(1.1);
+/* Остальные стили портфолио */
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-.portfolio-item .portfolio-overlay {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(98, 34, 204, .9);
-    transition: .5s;
-    opacity: 0;
+.portfolio-item {
+    margin-bottom: 30px; /* Добавляет отступ между рядами */
 }
 
-.portfolio-item:hover .portfolio-overlay {
-    opacity: 1;
+@media (max-width: 992px) {
+    .portfolio-item {
+        margin-bottom: 20px;
+    }
 }
-
-
 /*** Newsletter ***/
 .newsletter {
     margin: 6rem 0;
@@ -577,7 +523,115 @@ img, iframe, video {
     background: var(--primary);
 }
 
+/*** Gallery Section ***/
+.carousel-inner {
+    max-width: 800px; /* Ограничиваем ширину карусели */
+    margin: 0 auto; /* Центрирование */
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
 
+.carousel-item {
+    position: relative;
+    height: auto;
+    padding: 20px; /* Добавляем отступы */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto; /* Автоматическая высота */
+    max-height: 500px; /* Максимальная высота */
+    object-fit: scale-down; /* Оптимальное масштабирование */
+    border-radius: 10px;
+    margin: 0 auto; /* Центрирование изображения */
+}
+
+/* Кнопки управления */
+.carousel-control-prev, 
+.carousel-control-next {
+    width: 5%;
+    background: rgba(32, 49, 239, 0.1); /* Полупрозрачный фон */
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .carousel-inner {
+        max-width: 90%;
+    }
+    .carousel-item img {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item img {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item img {
+        max-height: 250px;
+    }
+}
+
+/* Индикаторы */
+.carousel-indicators {
+    margin-bottom: 1.5rem;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    transition: all 0.3s;
+}
+
+.carousel-indicators .active {
+    background-color: var(--primary);
+    width: 30px;
+    border-radius: 15px;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .carousel-item {
+        height: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 350px;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 250px;
+    }
+    
+    .carousel-indicators {
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel-indicators [data-bs-target] {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .carousel-indicators .active {
+        width: 20px;
+    }
+}
 /*** Footer ***/
 .footer {
     margin-top: 6rem;
